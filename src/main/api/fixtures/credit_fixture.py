@@ -18,9 +18,13 @@ class UserWithCreditAccount:
 def user_with_credit_account(
         api_manager: ApiManager,
         create_credit_user_request: CreateUserRequest
-) -> UserWithCredit:
+) -> UserWithCreditAccount:
     credit_account = api_manager.user_steps.create_account(create_credit_user_request)
-    credit_request = CreditRequestRequest(accountId=credit_account.id, amount=CREDIT_VALID_AMOUNT, termMonths=CREDIT_VALID_TERM)
+    credit_request = CreditRequestRequest(
+        accountId=credit_account.id,
+        amount=CREDIT_VALID_AMOUNT,
+        termMonths=CREDIT_VALID_TERM
+    )
     credit_response = api_manager.user_steps.credit_request(
         create_credit_user_request, credit_request)
     return UserWithCreditAccount(

@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 
 class AccountCrudDb:
     @staticmethod
-    def get_account_by_id(db: Session, account_id: int) -> Account | None:
+    def get_account_by_id(db: Session, account_id: int) -> type[Account] | None:
         return db.query(Account).filter_by(id=account_id).first()
 
     @staticmethod
@@ -20,5 +20,5 @@ class AccountCrudDb:
 
     @staticmethod
     def get_balance_by_account_id(db: Session, account_id: int) -> float | None:
-        account = db.query(Account).filter_by(account_id=account_id).first()
+        account = db.query(Account).filter_by(id=account_id).first()
         return account.balance if account else None

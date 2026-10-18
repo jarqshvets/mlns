@@ -9,7 +9,12 @@ from src.main.api.models.credit_request_request import CreditRequestRequest
 
 @pytest.mark.api
 class TestCreditRequest:
-    def test_credit_request_valid(self, db_session: Session, api_manager: ApiManager, user_credit_role_with_account: UserWithCreditRoleAccount):
+    def test_credit_request_valid(
+            self,
+            db_session: Session,
+            api_manager: ApiManager,
+            user_credit_role_with_account: UserWithCreditRoleAccount
+    ):
 
         credit_request_request = CreditRequestRequest(
             accountId=user_credit_role_with_account.account_id,
@@ -23,7 +28,12 @@ class TestCreditRequest:
         credit_from_db = CreditCrudDb.get_credit_by_account_id(db_session, user_credit_role_with_account.account_id)
         assert credit_from_db.id == response.creditId, 'айди кредита нет в БД'
 
-    def test_credit_request_invalid(self, db_session: Session, api_manager: ApiManager, user_credit_role_with_account: UserWithCreditRoleAccount):
+    def test_credit_request_invalid(
+            self,
+            db_session: Session,
+            api_manager: ApiManager,
+            user_credit_role_with_account: UserWithCreditRoleAccount
+    ):
 
         credit_request_request = CreditRequestRequest(
             accountId=user_credit_role_with_account.account_id,

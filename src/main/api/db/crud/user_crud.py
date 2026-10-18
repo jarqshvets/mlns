@@ -4,7 +4,7 @@ from src.main.api.db.models.user_table import User
 
 class UserCrudDb:
     @staticmethod
-    def get_user_by_username(db: Session, username: str) -> User | None:
+    def get_user_by_username(db: Session, username: str) -> type[User] | None:
         return db.query(User).filter_by(username=username).first() ### first- возвращаем первый объект который удовл данным условиям
 
     @staticmethod

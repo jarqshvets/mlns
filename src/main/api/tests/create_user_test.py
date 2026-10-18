@@ -14,7 +14,12 @@ class TestCreateUser:
         "create_user_request",
         [RandomModelGenerator.generate(CreateUserRequest)],
     )
-    def test_create_user_valid(self, api_manager: ApiManager, create_user_request: CreateUserRequest, db_session: Session):
+    def test_create_user_valid(
+            self,
+            api_manager: ApiManager,
+            create_user_request: CreateUserRequest,
+            db_session: Session
+    ):
         response = api_manager.admin_steps.create_user(create_user_request)
 
         assert create_user_request.username == response.username, 'Имя пользователя в запросе и ответе не совпадают'

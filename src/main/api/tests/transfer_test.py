@@ -10,7 +10,12 @@ from src.main.api.test_data.account_test_data import TRANSFER_VALID_AMOUNT, TRAN
 
 @pytest.mark.api
 class TestTransfer:
-    def test_transfer_valid(self, db_session: Session, api_manager: ApiManager, user_with_two_accounts_and_balance: TransferReadyUser):
+    def test_transfer_valid(
+            self,
+            db_session: Session,
+            api_manager: ApiManager,
+            user_with_two_accounts_and_balance: TransferReadyUser
+    ):
         transfer_request = TransferRequest(
             fromAccountId=user_with_two_accounts_and_balance.from_account_id,
             toAccountId=user_with_two_accounts_and_balance.to_account_id,
@@ -25,7 +30,12 @@ class TestTransfer:
 
 
 
-    def test_transfer_invalid(self, db_session: Session, api_manager: ApiManager, user_with_two_accounts_and_balance: TransferReadyUser):
+    def test_transfer_invalid(
+            self,
+            db_session: Session,
+            api_manager: ApiManager,
+            user_with_two_accounts_and_balance: TransferReadyUser
+    ):
         transfer_request = TransferRequest(
             fromAccountId=user_with_two_accounts_and_balance.from_account_id,
             toAccountId=user_with_two_accounts_and_balance.to_account_id,

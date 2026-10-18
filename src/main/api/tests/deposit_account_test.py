@@ -10,7 +10,12 @@ from src.main.api.models.deposit_account_request import DepositAccountRequest
 
 @pytest.mark.api
 class TestDepositAccount:
-    def test_deposit_account_valid(self, db_session: Session, api_manager: ApiManager, user_with_account: UserWithAccount):
+    def test_deposit_account_valid(
+            self,
+            db_session: Session,
+            api_manager: ApiManager,
+            user_with_account: UserWithAccount
+    ):
         deposit_account_request = DepositAccountRequest(
             accountId=user_with_account.account_id,
             amount=DEPOSIT_VALID_AMOUNT
@@ -24,7 +29,12 @@ class TestDepositAccount:
 
 
 
-    def test_deposit_account_invalid(self, db_session: Session, api_manager: ApiManager, user_with_account: UserWithAccount):
+    def test_deposit_account_invalid(
+            self,
+            db_session: Session,
+            api_manager: ApiManager,
+            user_with_account: UserWithAccount
+    ):
         deposit_account_request = DepositAccountRequest(
             accountId=user_with_account.account_id,
             amount=DEPOSIT_INVALID_BELOW_MIN_AMOUNT

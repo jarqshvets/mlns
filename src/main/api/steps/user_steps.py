@@ -12,7 +12,10 @@ from src.main.api.steps.base_steps import BaseSteps
 
 
 class UserSteps(BaseSteps):
-    def create_account(self, create_user_request: CreateUserRequest):
+    def create_account(
+            self,
+            create_user_request: CreateUserRequest
+    ):
         response = ValidateCrudRequester(
             RequestSpecs.auth_headers(username=create_user_request.username, password=create_user_request.password,),
             Endpoint.CREATE_ACCOUNT,
@@ -20,7 +23,11 @@ class UserSteps(BaseSteps):
         ).post()
         return response
 
-    def deposit_account(self,create_user_request: CreateUserRequest, deposit_account_request: DepositAccountRequest):
+    def deposit_account(
+            self,
+            create_user_request: CreateUserRequest,
+            deposit_account_request: DepositAccountRequest
+    ):
         response = ValidateCrudRequester(
             RequestSpecs.auth_headers(username=create_user_request.username, password=create_user_request.password,),
             Endpoint.DEPOSIT_ACCOUNT,
@@ -28,7 +35,11 @@ class UserSteps(BaseSteps):
         ).post(deposit_account_request)
         return response
 
-    def deposit_account_invalid(self, create_user_request: CreateUserRequest, deposit_account_request: DepositAccountRequest):
+    def deposit_account_invalid(
+            self,
+            create_user_request: CreateUserRequest,
+            deposit_account_request: DepositAccountRequest
+    ):
         CrudRequester(
             RequestSpecs.auth_headers(username=create_user_request.username, password=create_user_request.password,),
             Endpoint.DEPOSIT_ACCOUNT,
